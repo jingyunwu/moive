@@ -1,23 +1,33 @@
 <template>
   <div id="app">
-    <img src="./assets/logo.png">
-    <router-view/>
+    <VHeader/>
+    <div class="content">
+      <KeepAlive :exclude="exclude">
+        <RouterView/>
+      </KeepAlive>
+    </div>
   </div>
 </template>
 
 <script>
+import VHeader from './components/Header'
 export default {
-  name: 'App'
+  name: 'App',
+  components: {
+    VHeader
+  },
+  data () {
+    return {
+      exclude: ['User', 'Movie']
+    }
+  }
 }
 </script>
 
-<style>
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
+<style lang="stylus" scoped>
+.content
+  position absolute
+  top 56px
+  bottom 0
+  width 100%
 </style>
